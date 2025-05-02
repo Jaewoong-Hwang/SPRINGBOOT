@@ -20,7 +20,7 @@ configurations {
 	}
 }
 
-repositories {
+repositories {    //maven repository 를 참조하고 있음
 	mavenCentral()
 }
 
@@ -53,6 +53,10 @@ dependencies {
 
 	// DATASOURCE
 	implementation 'org.apache.commons:commons-dbcp2:2.13.0'
+
+	//MYBATIS
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
 
 
 }

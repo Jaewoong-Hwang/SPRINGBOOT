@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.domain.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;

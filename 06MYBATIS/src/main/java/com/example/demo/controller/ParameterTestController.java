@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.dto.PersonDto;
+import com.example.demo.domain.dto.PersonDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;

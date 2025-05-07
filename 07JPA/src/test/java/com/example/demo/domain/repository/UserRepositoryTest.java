@@ -39,7 +39,10 @@ class UserRepositoryTest {
 
     @Test
     public void t2() throws Exception{
-        List<User> list =userRepository.selectByRole("ROLE_USER");
-        list.stream().forEach(System.out::println);
+//        List<User> list =userRepository.selectByRole("ROLE_USER");
+//        list.stream().forEach(System.out::println);
+
+       List<User> list = userRepository.selectAllLikeUsername("1");
+       list.stream().forEach(System.out::println);
     }
 }

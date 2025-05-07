@@ -1,8 +1,11 @@
 package com.example.demo.domain.repository;
 
+import com.example.demo.domain.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 class UserRepositoryTest {
@@ -11,7 +14,7 @@ class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    public void t2() {
+    public void t1() {
         //INSERT
 //        User user =
 //                User.builder()
@@ -27,9 +30,16 @@ class UserRepositoryTest {
 //        user.setRole("manager");
 //
 //        userRepository.save(user);
-        
-        //DELETE
-        userRepository.deleteById("홍길동");
 
+        //DELETE
+//        userRepository.deleteById("홍길동");
+
+
+    }
+
+    @Test
+    public void t2() throws Exception{
+        List<User> list =userRepository.selectByRole("ROLE_USER");
+        list.stream().forEach(System.out::println);
     }
 }

@@ -56,5 +56,10 @@ class BookRepositoryTest {
 
                 List<Book> list = bookRepository.findByBookNameContains("이것");
                 list.stream().forEach(System.out::println);
+
+                int book  = bookRepository.countByBookName("");
+                System.out.println(book);
+                int book2 =bookRepository.countByBookNameContains("");
+                System.out.println(book2);
         }
 }

@@ -46,7 +46,15 @@ class BookRepositoryTest {
 //                if(bookOptional.isPresent())
 //                        System.out.println(bookOptional.get());
                 
-                List<Book> list = bookRepository.findByBookName("이것이리눅스다");
+//                List<Book> list = bookRepository.findByBookName("이것이리눅스다");
+//                list.stream().forEach(System.out::println);
+//                List<Book> list = bookRepository.findByPublisher("한빛미디어");
+//                list.stream().forEach(System.out::println);
+
+//                Book book =bookRepository.findByBookNameAndIsbn("C언어 기본","3333");
+//                System.out.println(book);
+
+                List<Book> list = bookRepository.findByBookNameContains("이것");
                 list.stream().forEach(System.out::println);
         }
 }

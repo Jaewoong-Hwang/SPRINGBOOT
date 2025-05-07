@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +19,7 @@ public class User {
     @Id
     @Column(length = 100) //varchar
     private String username;
-    @Column(length = 255,nullable = false)
+    @Column(length = 255, nullable = false)
     private String password;
     @Column(length = 255)
     private String role;

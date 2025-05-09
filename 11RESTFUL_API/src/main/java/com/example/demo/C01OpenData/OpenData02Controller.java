@@ -1,16 +1,20 @@
 package com.example.demo.C01OpenData;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
-@RestController
+@Controller
 @Slf4j
 @RequestMapping("/openData")
 public class OpenData02Controller {
@@ -25,7 +29,7 @@ public class OpenData02Controller {
     String nx = "89";
     String ny = "90";
     @GetMapping("/forcast")
-    public void forcast(){
+    public void forcast(Model model){
         log.info("GET /openData/forcast...");
         // 서버 정보
         url += "?serviceKey=" + serviceKey;
@@ -40,26 +44,37 @@ public class OpenData02Controller {
         // 요청 바디(x)
         // 요청 -> 응답
         RestTemplate rt = new RestTemplate();
-        ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET,null,String.class);
-        System.out.println(response.getBody());
+        ResponseEntity<Root> response = rt.exchange(url, HttpMethod.GET,null,Root.class);
+        System.out.println(response);
         // 데이터 가공처리
+
+        //뷰 전달
+        Root root = response.getBody();
+        Response rs = root.getResponse();
+        Body body = rs.getBody();
+        Items items = body.getItems();
+        List<Item> list = items.getItem();
+        list.stream().forEach(System.out::println);
+
+        model.addAttribute("list",list);
     }
 
     //------------------------------------------
-    public class Body{
+    @Data
+    private static class Body{
         public String dataType;
         public Items items;
         public int pageNo;
         public int numOfRows;
         public int totalCount;
     }
-
-    public class Header{
+    @Data
+   private static class Header{
         public String resultCode;
         public String resultMsg;
     }
-
-    public class Item{
+    @Data
+   private static class Item{
         public String baseDate;
         public String baseTime;
         public String category;
@@ -67,17 +82,17 @@ public class OpenData02Controller {
         public int ny;
         public String obsrValue;
     }
-
-    public class Items{
+    @Data
+   private static class Items{
         public ArrayList<Item> item;
     }
-
-    public class Response{
+    @Data
+   private static class Response{
         public Header header;
         public Body body;
     }
-
-    public class Root{
+    @Data
+   private static class Root{
         public Response response;
     }
     //------------------------------------------
